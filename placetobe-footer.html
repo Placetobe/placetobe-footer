@@ -17,13 +17,13 @@ Placetobe Footer
       }
 
       :host footer {
-        background-color: var(--placetobe-color-darkblue);
+        background-color: var(--placetobe-footer-color, var(--placetobe-color-darkblue));
         padding: calc( var(--placetobe-margin) * 2 );
       }
 
       :host .layout {
         @apply(--placetobe-border-box);
-        @apply(--placeobe-flex-layout--vertical);
+        @apply(--placetobe-flex-layout--vertical);
         @apply(--placetobe-flex-align--center);
         @apply(--placetobe-cross-align--center);
         max-width: calc( var(--placetobe-two-column-width) + (var(--placetobe-margin) *2 ) );
@@ -43,11 +43,6 @@ Placetobe Footer
         margin: 0;
         padding:0;
         list-style: none;
-      }
-
-      @media(min-width: 601px) {
-        :host #sitemap ul {
-        }a
       }
 
       @media(min-width: 601px) {
@@ -78,30 +73,35 @@ Placetobe Footer
           bottom: 0px;
           content: '';
           width: 1px;
-          background-color: white;
+          background-color: var(--placetobe-footer-tint-color, white);
         }
       }
 
       :host #sitemap ul li a {
-        color: white;
+        color: var(--placetobe-footer-tint-color, white);
         text-decoration: none;
       }
 
       :host #sitemap ul li a:hover,
       :host #sitemap ul li a:active {
-        color: var(--placetobe-color-red);
+        color: var(--placetobe-footer-tint-hover-color, var(--placetobe-color-red));
       }
 
       :host h6 {
         @apply(--placetobe-font-body);
-        color: white;
+        color: var(--placetobe-footer-tint-color, white);
         margin-top: calc( var(--placetobe-margin) * 2 )
       }
-    </style>
+
+      :host main ::slotted(*) {
+        margin-bottom: 36px;
+      }
+
+   </style>
 
     <footer>
       <div class="layout">
-        <slot></slot>
+        <main><slot></slot></main>
         <nav id="sitemap">
           <ul>
             <li><a href="/" title="place to be">Home</a></li>
