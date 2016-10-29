@@ -1,0 +1,135 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../placetobe-behaviors/placetobe-styles-behavior.html">
+<link rel="import" href="../placetobe-styles/placetobe-styles.html">
+
+<!--
+`placetobe-footer`
+Placetobe Footer
+
+@demo demo/index.html 
+-->
+
+<dom-module id="placetobe-footer">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      :host footer {
+        background-color: var(--placetobe-color-darkblue);
+        padding: calc( var(--placetobe-margin) * 2 );
+      }
+
+      :host .layout {
+        @apply(--placetobe-border-box);
+        @apply(--placeobe-flex-layout--vertical);
+        @apply(--placetobe-flex-align--center);
+        @apply(--placetobe-cross-align--center);
+        max-width: calc( var(--placetobe-two-column-width) + (var(--placetobe-margin) *2 ) );
+        padding: 0 var(--placetobe-margin);
+        margin: 0 auto;
+        text-align: center;
+      }
+
+
+      :host input {
+        @apply(--placetobe-textinput);
+        @apply(--placetobe-border-box);
+        display: block;
+      }
+
+      :host #sitemap ul {
+        margin: 0;
+        padding:0;
+        list-style: none;
+      }
+
+      @media(min-width: 601px) {
+        :host #sitemap ul {
+        }a
+      }
+
+      @media(min-width: 601px) {
+        :host #sitemap ul {
+          @apply(--placetobe-flex-align--space-between);
+          text-align: center;
+        }
+      }
+
+      :host #sitemap ul li {
+        @apply(--placetobe-flex-item--none);
+        @apply(--placetobe-font-body-serif-bold);
+        margin: 12px 0;
+        display: block;
+        position: relative;
+      }
+
+      @media(min-width: 601px) {
+        :host #sitemap ul li {
+          display: inline-block;
+          margin: 0 12px;
+        }
+
+        :host #sitemap ul li:not(:last-child):after {
+          position: absolute;
+          right: -14px;
+          top: 0px;
+          bottom: 0px;
+          content: '';
+          width: 1px;
+          background-color: white;
+        }
+      }
+
+      :host #sitemap ul li a {
+        color: white;
+        text-decoration: none;
+      }
+
+      :host #sitemap ul li a:hover,
+      :host #sitemap ul li a:active {
+        color: var(--placetobe-color-red);
+      }
+
+      :host h6 {
+        @apply(--placetobe-font-body);
+        color: white;
+        margin-top: calc( var(--placetobe-margin) * 2 )
+      }
+    </style>
+
+    <footer>
+      <div class="layout">
+        <slot></slot>
+        <nav id="sitemap">
+          <ul>
+            <li><a href="/" title="place to be">Home</a></li>
+            <li><a href="/start-project" title="start een project">Start een project</a></li>
+            <li><a href="/tarieven" title="tarieven voor ondernemers">Tarieven</a></li>
+            <li><a href="/investeren" title="investeren">Investeer</a></li>
+            <li><a href="/investeren/test" title="doe de quickscan">Quickscan investeren</a></li>
+          </ul>
+        </nav>
+        <h6>Placetobe B.V.&nbsp;&nbsp;|&nbsp;&nbsp;Ravellaan 96 Utrecht&nbsp;&nbsp;|&nbsp;&nbsp;info@placetobe.nl&nbsp;&nbsp;|&nbsp;&nbsp;KVK no. 67041221</h6>
+      </div>
+    </footer>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'placetobe-footer',
+      behaviors: [PlacetobeStylesBehavior],
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'placetobe-footer',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
