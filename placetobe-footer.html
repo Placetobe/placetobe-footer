@@ -39,42 +39,43 @@ Placetobe Footer
         display: block;
       }
 
+      :host #sitemap {
+        @apply(--placetobe-border-box);
+        @apply(--placetobe-flex-layout--vertical);
+        @apply(--placetobe-flex-align--space-between);
+        @apply(--placetobe-cross-align--center);
+        @apply(--placetobe-flex-wrap--nowrap);
+        width: 100%;
+        max-width: calc( var(--placetobe-layout-width) + (var(--placetobe-margin) * 2) );
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      @media(min-width: 601px) {
+        :host #sitemap {
+          @apply --placetobe-flex-layout--horizontal;
+          @apply --placetobe-cross-align--stretch;
+          padding: 0 var(--placetobe-margin);
+        }        
+      }
+
       :host #sitemap ul {
         margin: 0;
         padding:0;
         list-style: none;
-      }
-
-      @media(min-width: 601px) {
-        :host #sitemap ul {
-          @apply(--placetobe-flex-align--space-between);
-          text-align: center;
-        }
+        @apply --placetobe-flex-item--1;
+        width: 100%;
       }
 
       :host #sitemap ul li {
-        @apply(--placetobe-flex-item--none);
         @apply(--placetobe-font-body-serif-bold);
         margin: 12px 0;
         display: block;
         position: relative;
       }
 
-      @media(min-width: 601px) {
-        :host #sitemap ul li {
-          display: inline-block;
-          margin: 0 12px;
-        }
-
-        :host #sitemap ul li:not(:last-child):after {
-          position: absolute;
-          right: -14px;
-          top: 0px;
-          bottom: 0px;
-          content: '';
-          width: 1px;
-          background-color: var(--placetobe-footer-tint-color, white);
-        }
+      :host #sitemap ul li {
+        color: var(--placetobe-footer-heading-color, var(--placetobe-color-green));
       }
 
       :host #sitemap ul li a {
@@ -90,7 +91,7 @@ Placetobe Footer
       :host h6 {
         @apply(--placetobe-font-body);
         color: var(--placetobe-footer-tint-color, white);
-        margin-top: calc( var(--placetobe-margin) * 2 )
+        margin-top: calc( var(--placetobe-margin) * 2 );
       }
 
       :host h6 a {
@@ -108,12 +109,21 @@ Placetobe Footer
         <main><slot></slot></main>
         <nav id="sitemap">
           <ul>
+            <li>Placetobe</li>
             <li><a href="/" title="Home">Home</a></li>
+            <li><a href="/klachtenprocedure" title="Klachtenprocedure">Klachtenprocedure</a></li>
+            <li><a href="/algemene-voorwaarden" title="Algemene Voorwaarden">Algemene Voorwaarden</a></li>
+          </ul>
+          <ul>
+            <li>Ondernemers</li>
             <li><a href="/start-project" title="Start een project">Start een project</a></li>
-            <li><a href="/start-project/test" title="Quickscan ondernemers">Quickscan ondernemen</a></li>
-            <li><a href="/tarieven" title="Tarieven voor ondernemers">Tarieven</a></li>
-            <li><a href="/investeren" title="investeren">Investeer</a></li>
-            <li><a href="/investeren/test" title="Quickscan investeerders">Quickscan investeren</a></li>
+            <li><a href="/start-project/test" title="Quickscan Ondernemers">Quickscan ondernemers</a></li>
+            <li><a href="/tarieven" title="Tarieven">Tarieven</a></li>
+          </ul>
+          <ul>
+            <li>Investeerders</li>
+            <li><a href="/start-project" title="Start een project">Informatie over investeren</a></li>
+            <li><a href="/start-project/test" title="Quickscan Investeerders">Quickscan investeerders</a></li>
           </ul>
         </nav>
         <h6>Placetobe B.V.&nbsp;&nbsp;|&nbsp;&nbsp;Ravellaan 96 Utrecht&nbsp;&nbsp;|&nbsp;&nbsp;<a href="callto:+31306966523">030-6966523</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:info@placetobe.nl">info@placetobe.nl</a>&nbsp;&nbsp;|&nbsp;&nbsp;KVK no. 67041221</h6>
