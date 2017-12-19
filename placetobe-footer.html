@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../placetobe-behaviors/placetobe-styles-behavior.html">
 <link rel="import" href="../placetobe-styles/placetobe-styles.html">
+<link rel="import" href="../../bower_components/caas-session/caas-session.html">
 
 <!--
 `placetobe-footer`
@@ -108,6 +109,7 @@ Placetobe Footer
    </style>
 
     <footer>
+      <caas-session token-data="{{tokenData}}"></caas-session>
       <div class="layout">
         <main><slot></slot></main>
         <nav id="sitemap">
@@ -123,13 +125,13 @@ Placetobe Footer
             <li><a href="/start-project" title="Start een project">Start een project</a></li>
             <li><a href="/start-project/test" title="Quickscan Ondernemers">Quickscan ondernemers</a></li>
             <li><a href="/tarieven" title="Tarieven">Tarieven</a></li>
-            <li><a href="/campagne-dashboard" title="Inloggen Dashboard Ondernemers">Inloggen Ondernemers</a></li>
+            <li hidden$="[[investorIsLoggedIn]]"><a href="/campagne-dashboard" title="Inloggen Dashboard Ondernemers">Inloggen Ondernemers</a></li>
           </ul>
           <ul>
             <li>Investeerders</li>
             <li><a href="/investeren" title="Informatie over investeren">Informatie over investeren</a></li>
             <li><a href="/investeren/test" title="Quickscan Investeerders">Quickscan investeerders</a></li>
-            <li><a href="/investeerders-dashboard" title="Inloggen Dashboard Investeerders">Inloggen investeerders</a></li>
+            <li hidden$="[[entrepreneurIsLoggedIn]]"><a href="/investeerders-dashboard" title="Inloggen Dashboard Investeerders">Inloggen investeerders</a></li>
           </ul>
         </nav>
         <h6>Placetobe B.V.&nbsp;&nbsp;|&nbsp;&nbsp;Ravellaan 96 Utrecht&nbsp;&nbsp;|&nbsp;&nbsp;<a href="callto:+31306966523">030-6966523</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:info@placetobe.nl">info@placetobe.nl</a>&nbsp;&nbsp;|&nbsp;&nbsp;KVK no. 67041221</h6>
@@ -145,11 +147,29 @@ Placetobe Footer
       behaviors: [PlacetobeStylesBehavior],
 
       properties: {
+        tokenData: {
+          type: Object
+        },
+        investorIsLoggedIn: {
+          type: Boolean,
+          value: false
+        },
+        entrepreneurIsLoggedIn: {
+          type: Boolean,
+          value: false
+        },
         hideCampaigns: {
           type: Boolean,
-          value: false,
+          value: false
         }
       },
+      observers: [
+        '_computeLoggedInRole(tokenData.data.userRole)'
+      ],
+      _computeLoggedInRole: function(userRole) {
+        this.set('investorIsLoggedIn', (userRole == 'investor'));
+        this.set('entrepreneurIsLoggedIn', (userRole == 'ondernemer'));;
+      }
 
     });
   </script>
