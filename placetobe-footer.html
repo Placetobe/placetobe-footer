@@ -102,6 +102,9 @@ Placetobe Footer
         margin-bottom: 36px;
       }
 
+      [hidden] {
+        display: none!important;
+      }
    </style>
 
     <footer>
@@ -111,6 +114,7 @@ Placetobe Footer
           <ul>
             <li>Placetobe</li>
             <li><a href="/" title="Home">Home</a></li>
+            <li><a hidden$="[[hideCampaigns]]" href="/campagnes" title="Alle Campagnes">Alle Campagnes</a></li>
             <li><a href="/klachtenprocedure" title="Klachtenprocedure">Klachtenprocedure</a></li>
             <li><a href="/algemene-voorwaarden" title="Algemene Voorwaarden">Algemene Voorwaarden</a></li>
           </ul>
@@ -141,10 +145,10 @@ Placetobe Footer
       behaviors: [PlacetobeStylesBehavior],
 
       properties: {
-        prop1: {
-          type: String,
-          value: 'placetobe-footer',
-        },
+        hideCampaigns: {
+          type: Boolean,
+          value: false,
+        }
       },
 
     });
