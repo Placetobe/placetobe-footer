@@ -152,20 +152,19 @@ Placetobe Footer
         },
         investorIsLoggedIn: {
           type: Boolean,
-          computed: 'computeInvestorIsLoggedIn(tokenData)',
           value: false
         },
         entrepreneurIsLoggedIn: {
           type: Boolean,
-          computed: 'computeEntrepreneurIsLoggedIn(tokenData)',
           value: false
         }
       },
-      computeInvestorIsLoggedIn: function(tokenData) {
-        return (tokenData.data.userRole == 'investor') ? true : false;
-      },
-      computeEntrepreneurIsLoggedIn: function(tokenData) {
-        return (tokenData.data.userRole == 'ondernemer') ? true : false;
+      observers: [
+        '_computeLoggedInRole(tokenData.data.userRole)'
+      ],
+      _computeLoggedInRole: function(userRole) {
+        if (userRole == 'investor') return this.set('investorIsLoggedIn', true);
+        if (userRole == 'ondernemer') return this.set('entrepreneurIsLoggedIn', true);
       }
 
     });
