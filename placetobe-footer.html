@@ -163,8 +163,8 @@ Placetobe Footer
         '_computeLoggedInRole(tokenData.data.userRole)'
       ],
       _computeLoggedInRole: function(userRole) {
-        if (userRole == 'investor') return this.set('investorIsLoggedIn', true);
-        if (userRole == 'ondernemer') return this.set('entrepreneurIsLoggedIn', true);
+        this.set('investorIsLoggedIn', (userRole == 'investor'));
+        this.set('entrepreneurIsLoggedIn', (userRole == 'ondernemer'));;
       }
 
     });
